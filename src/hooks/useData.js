@@ -6,31 +6,31 @@ const useData = () => {
   const reducers = {
     [UPDATE_VALUE]: (state, { value, removeLast, newValue }) => {
       let currentValue = value;
-      let saved = [...state.saved];
+      let calculations = [...state.calculations];
       let { enter } = state;
 
       if (enter) {
-        saved = [];
+        calculations = [];
         enter = false;
       }
 
       if (removeLast) {
-        saved.pop();
+        calculations.pop();
       }
 
       if (newValue) {
-        saved.push(newValue);
+        calculations.push(newValue);
       }
-      return { currentValue, saved, enter };
+      return { currentValue, calculations, enter };
     },
     [CLEAR]: () => {
-      return { currentValue: "0", saved: [], enter: false };
+      return { currentValue: "0", calculations: [], enter: false };
     },
     [ENTER]: (state, { lst, result }) => {
       if (!state.enter) {
-        const saved = [...lst, "="];
+        const calculations = [...lst, "="];
         const currentValue = result;
-        return { currentValue, saved, enter: true };
+        return { currentValue, calculations, enter: true };
       }
       return state;
     },
@@ -42,11 +42,11 @@ const useData = () => {
 
   const [state, dispatch] = useReducer(reducer, {
     currentValue: "0",
-    saved: [],
+    calculations: [],
     enter: false,
   });
 
-  const { currentValue, saved, enter } = state;
+  const { currentValue, calculations, enter } = state;
 
   const updateValueAction = (val, previousVal, lastItem, enter) => {
     let value = val;
@@ -134,7 +134,7 @@ const useData = () => {
   const enterAction = (lst, value, ifEnter) => dispatch(enterAct(lst, value, ifEnter));
 
   const clear = () => dispatch({type: CLEAR});
-  return { currentValue, saved, enter, updateValue, enterAction, clear };
+  return { currentValue, calculations, enter, updateValue, enterAction, clear };
 };
 
 export default useData;

@@ -11,7 +11,7 @@ const lastItem = (lst) => {
 };
 
 const App = () => {
-  const { currentValue, saved, enter, updateValue, enterAction, clear } =
+  const { currentValue, calculations, enter, updateValue, enterAction, clear } =
     useData();
 
   const numButton = (num) => {
@@ -30,7 +30,7 @@ const App = () => {
     if (operatorsLst.includes(key) || parseInt(key) % 1 == 0) {
       updateValue(key, currentValue, lastItem, enter);
     } else if (key == "Enter") {
-      enterAction(saved, currentValue, enter);
+      enterAction(calculations, currentValue, enter);
     }
   };
 
@@ -39,7 +39,7 @@ const App = () => {
       <div className="grid-container">
         <div className="button screen">
           <div className="equation">
-            {saved}
+            {calculations}
             {currentValue}
           </div>
           <div id="display">{currentValue}</div>
@@ -62,7 +62,7 @@ const App = () => {
         {numButton("three")}
         <div
           id="equals"
-          onClick={() => enterAction(saved, currentValue, enter)}
+          onClick={() => enterAction(calculations, currentValue, enter)}
           className="button"
         >
           =
