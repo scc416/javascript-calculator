@@ -1,22 +1,15 @@
 import useData from "./hooks/useData";
 import { operatorsLst } from "./constants";
 
-const lastItem = (lst) => {
-  const length = lst.length;
-  if (length < 1) return null;
-  return lst[length - 1];
-};
-
 const App = () => {
-  const { value, calculations, updateValue, enterAction, clear } =
-    useData();
+  const { value, calculations, updateValue, enterAction, clear } = useData();
 
   const numButton = (num) => {
     return (
       <div
         id={`pad-${num}`}
         className="button"
-        onClick={() => updateValue(num, value, lastItem)}
+        onClick={() => updateValue(num, value)}
       >
         {num}
       </div>
@@ -25,7 +18,7 @@ const App = () => {
 
   const onKeyPress = (key) => {
     if (operatorsLst.includes(key) || parseInt(key) % 1 === 0) {
-      updateValue(key, value, lastItem);
+      updateValue(key, value);
     } else if (key === "Enter") {
       enterAction(calculations, value);
     }

@@ -5,4 +5,10 @@ export const removeZeros = (str) => {
     i--;
   }
   return str;
-}
+};
+
+export const lastItem = (lst) => {
+  const length = lst.length;
+  if (length < 1) return null;
+  return lst[length - 1];
+};

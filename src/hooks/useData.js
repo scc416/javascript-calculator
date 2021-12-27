@@ -1,6 +1,6 @@
 import { useReducer } from "react";
 import { UPDATE_VALUE, CLEAR, ENTER, operatorsLst } from "../constants";
-import { removeZeros } from "../helpers";
+import { removeZeros, lastItem } from "../helpers";
 
 const useData = () => {
   const reducers = {
@@ -44,7 +44,7 @@ const useData = () => {
 
   const { value, calculations, enter } = state;
 
-  const updateValue = (val, previousVal, lastItem) => {
+  const updateValue = (val, previousVal) => {
     let value = val;
     let newValue = null;
     let removeLast = false;
@@ -63,14 +63,14 @@ const useData = () => {
     }
     if (b1) {
       if (b2) {
-        if (operatorsLst.includes(lastItem)) {
+        if (operatorsLst.includes(lastItem(calculations))) {
           console.log("CONTAIN");
           removeLast = true;
         } else if (val === "-") {
           newValue = previousVal;
         }
       } else {
-        if (previousVal === "-" && lastItem === "-") {
+        if (previousVal === "-" && lastItem(calculations) === "-") {
           console.log("CONTAIN");
           value = "-" + value;
         } else {
