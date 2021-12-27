@@ -5,7 +5,6 @@ import { removeZeros } from "../helpers";
 const useData = () => {
   const reducers = {
     [UPDATE_VALUE]: (state, { value, removeLast, newValue }) => {
-      let currentValue = value;
       let calculations = [...state.calculations];
       let { enter } = state;
 
@@ -21,16 +20,16 @@ const useData = () => {
       if (newValue) {
         calculations.push(newValue);
       }
-      return { currentValue, calculations, enter };
+      return { value, calculations, enter };
     },
     [CLEAR]: () => {
-      return { currentValue: "0", calculations: [], enter: false };
+      return { value: "0", calculations: [], enter: false };
     },
     [ENTER]: (state, { lst, result }) => {
       if (!state.enter) {
         const calculations = [...lst, "="];
-        const currentValue = result;
-        return { currentValue, calculations, enter: true };
+        const value = result;
+        return { value, calculations, enter: true };
       }
       return state;
     },
@@ -41,12 +40,12 @@ const useData = () => {
   };
 
   const [state, dispatch] = useReducer(reducer, {
-    currentValue: "0",
+    value: "0",
     calculations: [],
     enter: false,
   });
 
-  const { currentValue, calculations, enter } = state;
+  const { value, calculations, enter } = state;
 
   const updateValueAction = (val, previousVal, lastItem, enter) => {
     let value = val;
@@ -134,7 +133,7 @@ const useData = () => {
   const enterAction = (lst, value, ifEnter) => dispatch(enterAct(lst, value, ifEnter));
 
   const clear = () => dispatch({type: CLEAR});
-  return { currentValue, calculations, enter, updateValue, enterAction, clear };
+  return { value, calculations, enter, updateValue, enterAction, clear };
 };
 
 export default useData;

@@ -11,7 +11,7 @@ const lastItem = (lst) => {
 };
 
 const App = () => {
-  const { currentValue, calculations, enter, updateValue, enterAction, clear } =
+  const { value, calculations, enter, updateValue, enterAction, clear } =
     useData();
 
   const numButton = (num) => {
@@ -19,7 +19,7 @@ const App = () => {
       <div
         id={num}
         className="button"
-        onClick={() => updateValue(charLst[num], currentValue, lastItem, enter)}
+        onClick={() => updateValue(charLst[num], value, lastItem, enter)}
       >
         {charLst[num]}
       </div>
@@ -28,9 +28,9 @@ const App = () => {
 
   const onKeyPress = (key) => {
     if (operatorsLst.includes(key) || parseInt(key) % 1 == 0) {
-      updateValue(key, currentValue, lastItem, enter);
+      updateValue(key, value, lastItem, enter);
     } else if (key == "Enter") {
-      enterAction(calculations, currentValue, enter);
+      enterAction(calculations, value, enter);
     }
   };
 
@@ -40,9 +40,9 @@ const App = () => {
         <div className="button screen">
           <div className="equation">
             {calculations}
-            {currentValue}
+            {value}
           </div>
-          <div id="display">{currentValue}</div>
+          <div id="display">{value}</div>
         </div>
         <div id="clear" className="button" onClick={clear}>
           clear
@@ -62,7 +62,7 @@ const App = () => {
         {numButton("three")}
         <div
           id="equals"
-          onClick={() => enterAction(calculations, currentValue, enter)}
+          onClick={() => enterAction(calculations, value, enter)}
           className="button"
         >
           =
