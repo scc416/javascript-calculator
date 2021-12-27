@@ -1,22 +1,24 @@
 import useData from "./hooks/useData";
 import { charLst, operatorsLst } from "./constants";
 
+const lastItem = (lst) => {
+  const length = lst.length;
+  if (length < 1) {
+    return null;
+  } else {
+    return lst[length - 1];
+  }
+};
+
 const App = () => {
-  const { currentValue, saved, enter } = useData();
+  const { currentValue, saved, enter, updateValue, enterAction } = useData();
 
   const numButton = (num) => {
     return (
       <div
         id={num}
         className="button"
-        onClick={
-          () => console.log("onclick")
-          // this.props.updateValue(
-          //   charLst[num],
-          //   this.props.currentValue,
-          //   this.props.lastItem,
-          //   this.props.ifEnter)
-        }
+        onClick={() => updateValue(charLst[num], currentValue, lastItem, enter)}
       >
         {charLst[num]}
       </div>
@@ -32,10 +34,7 @@ const App = () => {
       //       this.props.ifEnter
       //   )
     } else if (key == "Enter") {
-      // this.props.enter(
-      //   this.props.saved,
-      //   this.props.currentValue,
-      //   this.props.ifEnter)
+      enterAction(saved, currentValue, enter);
     }
   };
 
@@ -74,14 +73,7 @@ const App = () => {
         {numButton("three")}
         <div
           id="equals"
-          onClick={
-            () => console.log("onclick")
-            // this.props.enter(
-            //   this.props.saved,
-            //   this.props.currentValue,
-            //   this.props.ifEnter
-            // )
-          }
+          onClick={() => enterAction(saved, currentValue, enter)}
           className="button"
         >
           =

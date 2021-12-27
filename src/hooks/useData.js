@@ -116,10 +116,32 @@ const useData = () => {
     };
   };
 
+  const enterAct = (lst, value, ifEnter) => {
+    if(ifEnter) {
+      return {
+        type: ENTER
+      };
+    }
+    let removeLast = false;
+    lst = operatorsLst.includes(value) ? lst : [...lst, value];
+    if(lst.length > 0) {
+      if(operatorsLst.includes(lst[lst.length - 1])){
+        lst.pop();
+      }
+    }
+    return { 
+      type: ENTER,
+      result: eval(lst.join("")),
+      lst: lst
+    };
+  };
+
   const updateValue = (val, previousVal, lastItem, enter) => 
     dispatch(updateValueAction(val, previousVal, lastItem, enter));
 
-  return { currentValue, saved, enter, updateValue };
+  const enterAction = (lst, value, ifEnter) => dispatch(enterAct(lst, value, ifEnter));
+
+  return { currentValue, saved, enter, updateValue, enterAction };
 };
 
 export default useData;
