@@ -125,7 +125,8 @@ const useData = () => {
   const clear = () => dispatch({ type: CLEAR });
 
   const onKeyPress = ({ key }) => {
-    if (operatorsLst.includes(key) || parseInt(key) % 1 === 0) {
+    console.log(key);
+    if (operatorsLst.includes(key) || key === "." || parseInt(key) % 1 === 0) {
       updateValue(key);
     } else if (key === "Enter") {
       enterAction();
