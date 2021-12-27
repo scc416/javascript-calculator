@@ -45,7 +45,7 @@ body {
 #clear {
   grid-area: 2/1/3/3;
 }
-#zero {
+#pad-0 {
   grid-area: 6/1/7/3;
 }
 #equals {

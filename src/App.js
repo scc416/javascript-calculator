@@ -1,5 +1,5 @@
 import useData from "./hooks/useData";
-import { charLst, operatorsLst } from "./constants";
+import { operatorsLst } from "./constants";
 
 const lastItem = (lst) => {
   const length = lst.length;
@@ -14,11 +14,11 @@ const App = () => {
   const numButton = (num) => {
     return (
       <div
-        id={num}
+        id={`pad-${num}`}
         className="button"
-        onClick={() => updateValue(charLst[num], value, lastItem)}
+        onClick={() => updateValue(num, value, lastItem)}
       >
-        {charLst[num]}
+        {num}
       </div>
     );
   };
@@ -44,19 +44,19 @@ const App = () => {
         <div id="clear" className="button" onClick={clear}>
           clear
         </div>
-        {numButton("divide")}
-        {numButton("multiply")}
-        {numButton("seven")}
-        {numButton("eight")}
-        {numButton("nine")}
-        {numButton("subtract")}
-        {numButton("four")}
-        {numButton("five")}
-        {numButton("six")}
-        {numButton("add")}
-        {numButton("one")}
-        {numButton("two")}
-        {numButton("three")}
+        {numButton("/")}
+        {numButton("*")}
+        {numButton("7")}
+        {numButton("8")}
+        {numButton("9")}
+        {numButton("-")}
+        {numButton("4")}
+        {numButton("5")}
+        {numButton("6")}
+        {numButton("+")}
+        {numButton("1")}
+        {numButton("2")}
+        {numButton("3")}
         <div
           id="equals"
           onClick={() => enterAction(calculations, value)}
@@ -64,8 +64,8 @@ const App = () => {
         >
           =
         </div>
-        {numButton("zero")}
-        {numButton("decimal")}
+        {numButton("0")}
+        {numButton(".")}
       </div>
       <div className="footer">
         Design Inspired by{" "}
