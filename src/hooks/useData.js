@@ -16,6 +16,11 @@ const useData = () => {
       return state;
     },
   };
+
+  const reducer = (state, action) => {
+    return reducers[action.type](state, action) || state;
+  };
+  
 };
 
 export default useData;
