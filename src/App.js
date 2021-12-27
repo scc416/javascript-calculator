@@ -3,11 +3,8 @@ import { charLst, operatorsLst } from "./constants";
 
 const lastItem = (lst) => {
   const length = lst.length;
-  if (length < 1) {
-    return null;
-  } else {
-    return lst[length - 1];
-  }
+  if (length < 1) return null;
+  return lst[length - 1];
 };
 
 const App = () => {
