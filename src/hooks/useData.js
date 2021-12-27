@@ -47,49 +47,45 @@ const useData = () => {
     const valueIsOperator = isOperator(val);
 
     if (enter) {
-      if (valueIsOperator) {
-        newValue = value;
-      }
-      return dispatch({
-        type: UPDATE_VALUE,
-        value: theValue,
-        newValue,
-        removeLast,
-      });
+      if (valueIsOperator) newValue = value;
     }
 
-    if (lastValueIsOperator) {
-      if (valueIsOperator) {
-        if (isOperator(lastItem(calculations))) {
-          removeLast = true;
-        } else if (val === "-") {
-          newValue = value;
+    if (!enter) {
+      if (lastValueIsOperator) {
+        if (valueIsOperator) {
+          if (isOperator(lastItem(calculations))) {
+            removeLast = true;
+          } else if (val === "-") {
+            newValue = value;
+          }
+        } else {
+          if (value === "-" && lastItem(calculations) === "-") {
+            console.log("CONTAIN");
+            theValue = "-" + theValue;
+          } else {
+            newValue = value;
+          }
         }
       } else {
-        if (value === "-" && lastItem(calculations) === "-") {
-          console.log("CONTAIN");
-          theValue = "-" + theValue;
-        } else {
+        if (valueIsOperator) {
           newValue = value;
-        }
-      }
-    } else {
-      if (valueIsOperator) {
-        newValue = value;
-      } else {
-        if (val === "." && value.includes(".")) {
-          theValue = value;
         } else {
-          theValue = removeZeros(value + val);
+          if (val === "." && value.includes(".")) {
+            theValue = value;
+          } else {
+            theValue = removeZeros(value + val);
+          }
         }
       }
-    }
-    if (theValue[0] === ".") {
-      theValue = "0" + theValue;
-    }
-    if (newValue) {
-      if (newValue[newValue.length - 1] === ".") {
-        newValue += "0";
+
+      if (theValue[0] === ".") {
+        theValue = "0" + theValue;
+      }
+
+      if (newValue) {
+        if (newValue[newValue.length - 1] === ".") {
+          newValue += "0";
+        }
       }
     }
 
