@@ -1,20 +1,5 @@
-const charLst = {
-  zero: "0",
-  one: "1",
-  two: "2",
-  three: "3",
-  four: "4",
-  five: "5",
-  six: "6",
-  seven: "7",
-  eight: "8",
-  nine: "9",
-  add: "+",
-  subtract: "-",
-  multiply: "*",
-  divide: "/",
-  decimal: ".",
-};
+import useData from "./hooks/useData";
+import { charLst } from "./constants";
 
 const numButton = (num) => {
   return (
@@ -36,6 +21,7 @@ const numButton = (num) => {
 };
 
 const App = () => {
+  const { currentValue, saved, enter } = useData();
   return (
     <div
       onKeyPress={
@@ -48,18 +34,10 @@ const App = () => {
       <div className="grid-container">
         <div className="button screen">
           <div className="equation">
-            {
-              [] //this.props.saved
-            }
-
-            {
-              "0" //this.props.currentValue
-            }
+            {saved}
+            {currentValue}
           </div>
-          <div id="display">
-            0
-            {/* {this.props.currentValue} */}
-            </div>
+          <div id="display">{currentValue}</div>
         </div>
         <div
           id="clear"
