@@ -123,7 +123,7 @@ const useData = () => {
 
   const clear = () => dispatch({ type: CLEAR });
 
-  return { value, calculations, enter, updateValue, enterAction, clear };
+  return { value, calculations, updateValue, enterAction, clear };
 };
 
 export default useData;
