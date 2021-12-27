@@ -1,7 +1,9 @@
 import useData from "./hooks/useData";
+import Footer from "./components/Footer";
 
 const App = () => {
-  const { value, calculations, updateValue, enterAction, clear, onKeyPress } = useData();
+  const { value, calculations, updateValue, enterAction, clear, onKeyPress } =
+    useData();
 
   const numButton = (num) => {
     return (
@@ -47,12 +49,7 @@ const App = () => {
         {numButton("0")}
         {numButton(".")}
       </div>
-      <div className="footer">
-        Design Inspired by{" "}
-        <a href="https://www.apple.com/shop/product/MQ052LL/A/magic-keyboard-with-numeric-keypad-us-english-silver">
-          Magic Keyboard
-        </a>
-      </div>
+      <Footer />
     </div>
   );
 };
