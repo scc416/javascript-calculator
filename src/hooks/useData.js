@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useReducer } from "react";
 import { UPDATE_VALUE, CLEAR, SAVE_ITEM, ENTER } from "../constants";
 
 const useData = () => {
@@ -20,7 +20,15 @@ const useData = () => {
   const reducer = (state, action) => {
     return reducers[action.type](state, action) || state;
   };
-  
+
+  const [state, dispatch] = useReducer(reducer, {
+    currentValue: "0",
+    saved: [],
+    enter: false,
+  });
+
+  const { currentValue, saved, enter } = state;
+  return { currentValue, saved, enter };
 };
 
 export default useData;
