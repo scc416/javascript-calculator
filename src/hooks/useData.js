@@ -1,6 +1,6 @@
 import { useReducer } from "react";
-import { UPDATE_VALUE, CLEAR, ENTER, operatorsLst } from "../constants";
-import { removeZeros, lastItem } from "../helpers";
+import { UPDATE_VALUE, CLEAR, ENTER } from "../constants";
+import { removeZeros, lastItem, isOperator } from "../helpers";
 
 const useData = () => {
   const reducers = {
@@ -46,8 +46,10 @@ const useData = () => {
     let theValue = val;
     let newValue = null;
     let removeLast = false;
-    const lastValueIsOperator = operatorsLst.includes(value);
-    const valueIsOperator = operatorsLst.includes(val);
+
+    const lastValueIsOperator = isOperator(value);
+    const valueIsOperator = isOperator(val);
+
     if (enter) {
       if (valueIsOperator) {
         newValue = value;
@@ -59,9 +61,10 @@ const useData = () => {
         removeLast,
       });
     }
+
     if (lastValueIsOperator) {
       if (valueIsOperator) {
-        if (operatorsLst.includes(lastItem(calculations))) {
+        if (isOperator(lastItem(calculations))) {
           removeLast = true;
         } else if (val === "-") {
           newValue = value;
@@ -105,19 +108,24 @@ const useData = () => {
   const calculate = () => {
     if (enter) return dispatch({ type: ENTER });
 
-    const lastIndex = value.length - 1;
-    const lastChar = value[lastIndex];
-    const lastCharIsEqualSign = lastChar === ".";
+    const lastChar = lastItem(value);
+    const lastCharIsDecimal = lastChar === ".";
 
-    const lst = lastCharIsEqualSign
+    const lst = lastCharIsDecimal
       ? calculations.concat([value, "0"])
-      : operatorsLst.includes(value)
+      : isOperator(value)
       ? calculations.concat([])
       : calculations.concat([value]);
 
+    const lastCal = lastItem(lst);
+    const lastCharIsOperator = isOperator(lastCal);
+    if (lastCharIsOperator) lst.pop();
+
+    const result = eval(lst.join(""));
+
     return dispatch({
       type: ENTER,
-      result: eval(lst.join("")),
+      result: result,
       lst,
     });
   };
@@ -125,7 +133,7 @@ const useData = () => {
   const clear = () => dispatch({ type: CLEAR });
 
   const onKeyPress = ({ key }) => {
-    if (operatorsLst.includes(key) || key === "." || parseInt(key) % 1 === 0) {
+    if (isOperator(key) || key === "." || parseInt(key) % 1 === 0) {
       return updateValue(key);
     }
     if (key === "Enter") return calculate();
