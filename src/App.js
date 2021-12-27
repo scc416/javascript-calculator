@@ -16,7 +16,7 @@ const App = () => {
       <div
         id={num}
         className="button"
-        onClick={() => updateValue(charLst[num], value, lastItem, enter)}
+        onClick={() => updateValue(charLst[num], value, lastItem)}
       >
         {charLst[num]}
       </div>
@@ -25,9 +25,9 @@ const App = () => {
 
   const onKeyPress = (key) => {
     if (operatorsLst.includes(key) || parseInt(key) % 1 == 0) {
-      updateValue(key, value, lastItem, enter);
+      updateValue(key, value, lastItem);
     } else if (key == "Enter") {
-      enterAction(calculations, value, enter);
+      enterAction(calculations, value);
     }
   };
 
@@ -59,7 +59,7 @@ const App = () => {
         {numButton("three")}
         <div
           id="equals"
-          onClick={() => enterAction(calculations, value, enter)}
+          onClick={() => enterAction(calculations, value)}
           className="button"
         >
           =

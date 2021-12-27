@@ -44,7 +44,7 @@ const useData = () => {
 
   const { value, calculations, enter } = state;
 
-  const updateValue = (val, previousVal, lastItem, enter) => {
+  const updateValue = (val, previousVal, lastItem) => {
     let value = val;
     let newValue = null;
     let removeLast = false;
@@ -105,8 +105,8 @@ const useData = () => {
     });
   };
 
-  const enterAction = (lst, value, ifEnter) => {
-    if (ifEnter) return dispatch({ type: ENTER });
+  const enterAction = (lst, value) => {
+    if (enter) return dispatch({ type: ENTER });
 
     lst = operatorsLst.includes(value) ? lst : [...lst, value];
     if (lst.length > 0) {
@@ -117,11 +117,12 @@ const useData = () => {
     return dispatch({
       type: ENTER,
       result: eval(lst.join("")),
-      lst: lst,
+      lst,
     });
   };
 
   const clear = () => dispatch({ type: CLEAR });
+
   return { value, calculations, enter, updateValue, enterAction, clear };
 };
 
