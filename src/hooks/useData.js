@@ -66,11 +66,11 @@ const useData = () => {
         if (operatorsLst.includes(lastItem)) {
           console.log("CONTAIN");
           removeLast = true;
-        } else if (val == "-") {
+        } else if (val === "-") {
           newValue = previousVal;
         }
       } else {
-        if (previousVal == "-" && lastItem == "-") {
+        if (previousVal === "-" && lastItem === "-") {
           console.log("CONTAIN");
           value = "-" + value;
         } else {
@@ -81,18 +81,18 @@ const useData = () => {
       if (b2) {
         newValue = previousVal;
       } else {
-        if (val == "." && previousVal.split("").includes(".")) {
+        if (val === "." && previousVal.split("").includes(".")) {
           value = previousVal;
         } else {
           value = removeZeros(previousVal + val);
         }
       }
     }
-    if (value[0] == ".") {
+    if (value[0] === ".") {
       value = "0" + value;
     }
     if (newValue) {
-      if (newValue[newValue.length - 1] == ".") {
+      if (newValue[newValue.length - 1] === ".") {
         newValue += "0";
       }
     }
