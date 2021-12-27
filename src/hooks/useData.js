@@ -1,18 +1,36 @@
 import { useReducer } from "react";
-import { UPDATE_VALUE, CLEAR, SAVE_ITEM, ENTER } from "../constants";
+import { UPDATE_VALUE, CLEAR, ENTER } from "../constants";
 
 const useData = () => {
   const reducers = {
-    [UPDATE_VALUE]: (state) => {
-      return state;
+    [UPDATE_VALUE]: (state, { value, removeLast, newValue }) => {
+      let currentValue = value;
+      let saved = [...state.saved];
+      let { enter } = state;
+
+      if (enter) {
+        saved = [];
+        enter = false;
+      }
+
+      if (removeLast) {
+        saved.pop();
+      }
+
+      if (newValue) {
+        saved.push(newValue);
+      }
+      return { currentValue, saved, enter };
     },
-    [CLEAR]: (state) => {
-      return state;
+    [CLEAR]: () => {
+      return { currentValue: "0", saved: [], enter: false };
     },
-    [SAVE_ITEM]: (state) => {
-      return state;
-    },
-    [ENTER]: (state) => {
+    [ENTER]: (state, { lst, result }) => {
+      if (!state.enter) {
+        const saved = [...lst, "="];
+        const currentValue = result;
+        return { currentValue, saved, enter: true };
+      }
       return state;
     },
   };
