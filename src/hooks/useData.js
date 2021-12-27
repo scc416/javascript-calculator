@@ -99,37 +99,30 @@ const useData = () => {
 
     return {
       type: UPDATE_VALUE,
-      value: value,
-      newValue: newValue,
-      removeLast: removeLast,
-    };
-  };
-
-  const enterAct = (lst, value, ifEnter) => {
-    if (ifEnter) {
-      return {
-        type: ENTER,
-      };
-    }
-    let removeLast = false;
-    lst = operatorsLst.includes(value) ? lst : [...lst, value];
-    if (lst.length > 0) {
-      if (operatorsLst.includes(lst[lst.length - 1])) {
-        lst.pop();
-      }
-    }
-    return {
-      type: ENTER,
-      result: eval(lst.join("")),
-      lst: lst,
+      value,
+      newValue,
+      removeLast,
     };
   };
 
   const updateValue = (val, previousVal, lastItem, enter) =>
     dispatch(updateValueAction(val, previousVal, lastItem, enter));
 
-  const enterAction = (lst, value, ifEnter) =>
-    dispatch(enterAct(lst, value, ifEnter));
+  const enterAction = (lst, value, ifEnter) => {
+    if (ifEnter) return dispatch({ type: ENTER });
+
+    lst = operatorsLst.includes(value) ? lst : [...lst, value];
+    if (lst.length > 0) {
+      if (operatorsLst.includes(lst[lst.length - 1])) {
+        lst.pop();
+      }
+    }
+    return dispatch({
+      type: ENTER,
+      result: eval(lst.join("")),
+      lst: lst,
+    });
+  };
 
   const clear = () => dispatch({ type: CLEAR });
   return { value, calculations, enter, updateValue, enterAction, clear };
