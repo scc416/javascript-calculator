@@ -1,3 +1,5 @@
+import Screen from "./Screen";
+
 const Calculator = ({
   value,
   calculations,
@@ -19,13 +21,7 @@ const Calculator = ({
 
   return (
     <div className="grid-container">
-      <div className="button screen">
-        <div className="equation">
-          {calculations}
-          {value}
-        </div>
-        <div id="display">{value}</div>
-      </div>
+      <Screen {...{ value, calculations }} />
       <div id="clear" className="button" onClick={clear}>
         clear
       </div>
