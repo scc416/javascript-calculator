@@ -27,12 +27,7 @@ const App = () => {
 
   const onKeyPress = (key) => {
     if (operatorsLst.includes(key) || parseInt(key) % 1 == 0) {
-      // this.props.updateValue(
-      //       key,
-      //       this.props.currentValue,
-      //       this.props.lastItem,
-      //       this.props.ifEnter
-      //   )
+      updateValue(key, currentValue, lastItem, enter);
     } else if (key == "Enter") {
       enterAction(saved, currentValue, enter);
     }
