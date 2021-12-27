@@ -24,7 +24,7 @@ const useData = () => {
     [ENTER]: (state, { lst, result }) => {
       if (state.enter) return state;
 
-      const calculations = lst.concat["="];
+      const calculations = lst.concat(["="]);
       const value = result;
       return { value, calculations, enter: true };
     },
@@ -105,12 +105,15 @@ const useData = () => {
   const calculate = () => {
     if (enter) return dispatch({ type: ENTER });
 
-    const lst =
-      value[value.length - 1] === "."
-        ? calculations.concat([value, "0"])
-        : operatorsLst.includes(value)
-        ? calculations.concat([])
-        : calculations.concat([value]);
+    const lastIndex = value.length - 1;
+    const lastChar = value[lastIndex];
+    const lastCharIsEqualSign = lastChar === ".";
+
+    const lst = lastCharIsEqualSign
+      ? calculations.concat([value, "0"])
+      : operatorsLst.includes(value)
+      ? calculations.concat([])
+      : calculations.concat([value]);
 
     return dispatch({
       type: ENTER,
