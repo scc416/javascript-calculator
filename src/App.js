@@ -11,7 +11,8 @@ const lastItem = (lst) => {
 };
 
 const App = () => {
-  const { currentValue, saved, enter, updateValue, enterAction } = useData();
+  const { currentValue, saved, enter, updateValue, enterAction, clear } =
+    useData();
 
   const numButton = (num) => {
     return (
@@ -43,14 +44,7 @@ const App = () => {
           </div>
           <div id="display">{currentValue}</div>
         </div>
-        <div
-          id="clear"
-          className="button"
-          onClick={
-            () => console.log("onclick")
-            // () => this.props.clear()
-          }
-        >
+        <div id="clear" className="button" onClick={clear}>
           clear
         </div>
         {numButton("divide")}

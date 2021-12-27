@@ -141,7 +141,8 @@ const useData = () => {
 
   const enterAction = (lst, value, ifEnter) => dispatch(enterAct(lst, value, ifEnter));
 
-  return { currentValue, saved, enter, updateValue, enterAction };
+  const clear = () => dispatch({type: CLEAR});
+  return { currentValue, saved, enter, updateValue, enterAction, clear };
 };
 
 export default useData;
