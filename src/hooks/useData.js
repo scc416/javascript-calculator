@@ -44,19 +44,19 @@ const useData = () => {
 
   const { value, calculations, enter } = state;
 
-  const updateValue = (val, previousVal) => {
-    let value = val;
+  const updateValue = (val) => {
+    let theValue = val;
     let newValue = null;
     let removeLast = false;
-    const b1 = operatorsLst.includes(previousVal);
+    const b1 = operatorsLst.includes(value);
     const b2 = operatorsLst.includes(val);
     if (enter) {
       if (b2) {
-        newValue = previousVal;
+        newValue = value;
       }
       return dispatch({
         type: UPDATE_VALUE,
-        value,
+        value: theValue,
         newValue,
         removeLast,
       });
@@ -64,32 +64,31 @@ const useData = () => {
     if (b1) {
       if (b2) {
         if (operatorsLst.includes(lastItem(calculations))) {
-          console.log("CONTAIN");
           removeLast = true;
         } else if (val === "-") {
-          newValue = previousVal;
+          newValue = value;
         }
       } else {
-        if (previousVal === "-" && lastItem(calculations) === "-") {
+        if (value === "-" && lastItem(calculations) === "-") {
           console.log("CONTAIN");
-          value = "-" + value;
+          theValue = "-" + theValue;
         } else {
-          newValue = previousVal;
+          newValue = value;
         }
       }
     } else {
       if (b2) {
-        newValue = previousVal;
+        newValue = value;
       } else {
-        if (val === "." && previousVal.split("").includes(".")) {
-          value = previousVal;
+        if (val === "." && value.includes(".")) {
+          theValue = value;
         } else {
-          value = removeZeros(previousVal + val);
+          theValue = removeZeros(value + val);
         }
       }
     }
-    if (value[0] === ".") {
-      value = "0" + value;
+    if (theValue[0] === ".") {
+      theValue = "0" + theValue;
     }
     if (newValue) {
       if (newValue[newValue.length - 1] === ".") {
@@ -99,16 +98,18 @@ const useData = () => {
 
     return dispatch({
       type: UPDATE_VALUE,
-      value,
+      value: theValue,
       newValue,
       removeLast,
     });
   };
 
-  const enterAction = (lst, value) => {
+  const enterAction = () => {
     if (enter) return dispatch({ type: ENTER });
 
-    lst = operatorsLst.includes(value) ? lst : [...lst, value];
+    let lst = operatorsLst.includes(value)
+      ? [...calculations]
+      : [...calculations, value];
     if (lst.length > 0) {
       if (operatorsLst.includes(lst[lst.length - 1])) {
         lst.pop();
