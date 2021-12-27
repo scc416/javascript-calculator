@@ -8,7 +8,7 @@ const lastItem = (lst) => {
 };
 
 const App = () => {
-  const { value, calculations, enter, updateValue, enterAction, clear } =
+  const { value, calculations, updateValue, enterAction, clear } =
     useData();
 
   const numButton = (num) => {
@@ -24,9 +24,9 @@ const App = () => {
   };
 
   const onKeyPress = (key) => {
-    if (operatorsLst.includes(key) || parseInt(key) % 1 == 0) {
+    if (operatorsLst.includes(key) || parseInt(key) % 1 === 0) {
       updateValue(key, value, lastItem);
-    } else if (key == "Enter") {
+    } else if (key === "Enter") {
       enterAction(calculations, value);
     }
   };
