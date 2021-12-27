@@ -121,7 +121,7 @@ const useData = () => {
     const lastCharIsOperator = isOperator(lastCal);
     if (lastCharIsOperator) lst.pop();
 
-    const result = eval(lst.join(""));
+    const result = eval(lst.join("").replace("--", "+"));
 
     return dispatch({
       type: ENTER,
