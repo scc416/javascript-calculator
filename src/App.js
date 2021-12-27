@@ -1,8 +1,7 @@
 import useData from "./hooks/useData";
-import { operatorsLst } from "./constants";
 
 const App = () => {
-  const { value, calculations, updateValue, enterAction, clear } = useData();
+  const { value, calculations, updateValue, enterAction, clear, onKeyPress } = useData();
 
   const numButton = (num) => {
     return (
@@ -16,16 +15,8 @@ const App = () => {
     );
   };
 
-  const onKeyPress = (key) => {
-    if (operatorsLst.includes(key) || parseInt(key) % 1 === 0) {
-      updateValue(key);
-    } else if (key === "Enter") {
-      enterAction();
-    }
-  };
-
   return (
-    <div onKeyPress={(e) => onKeyPress(e.key)} tabIndex="0" className="full">
+    <div onKeyPress={onKeyPress} tabIndex="0" className="full">
       <div className="grid-container">
         <div className="button screen">
           <div className="equation">

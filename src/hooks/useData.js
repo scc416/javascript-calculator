@@ -124,7 +124,15 @@ const useData = () => {
 
   const clear = () => dispatch({ type: CLEAR });
 
-  return { value, calculations, updateValue, enterAction, clear };
+  const onKeyPress = ({ key }) => {
+    if (operatorsLst.includes(key) || parseInt(key) % 1 === 0) {
+      updateValue(key);
+    } else if (key === "Enter") {
+      enterAction();
+    }
+  };
+
+  return { value, calculations, updateValue, enterAction, clear, onKeyPress };
 };
 
 export default useData;
