@@ -13,13 +13,10 @@ const useData = () => {
         enter = false;
       }
 
-      if (removeLast) {
-        calculations.pop();
-      }
+      if (removeLast) calculations.pop();
 
-      if (newValue) {
-        calculations.push(newValue);
-      }
+      if (newValue) calculations.push(newValue);
+
       return { value, calculations, enter };
     },
     [CLEAR]: () => {
