@@ -1,5 +1,5 @@
 import useData from "./hooks/useData";
-import { charLst } from "./constants";
+import { charLst, operatorsLst } from "./constants";
 
 const App = () => {
   const { currentValue, saved, enter } = useData();
