@@ -4,19 +4,8 @@ import { removeZeros, lastItem, isOperator } from "../helpers";
 
 const useData = () => {
   const reducers = {
-    [UPDATE_VALUE]: (state, { value, removeLast, newValue }) => {
-      let calculations = state.calculations.concat([]);
-      let { enter } = state;
-
-      if (enter) {
-        calculations = [];
-        enter = false;
-      }
-
-      if (removeLast) calculations.pop();
-      if (newValue) calculations.push(newValue);
-
-      return { value, calculations, enter };
+    [UPDATE_VALUE]: (state, { value, calculations }) => {
+      return { value, calculations, enter: false };
     },
     [CLEAR]: () => {
       return { value: "0", calculations: [], enter: false };
@@ -39,61 +28,63 @@ const useData = () => {
   const { value, calculations, enter } = state;
 
   const updateValue = (val) => {
-    let theValue = val;
-    let newValue = null;
-    let removeLast = false;
+    let newValue = val;
+    let newCalculations = calculations.concat([]);
 
-    const lastValueIsOperator = isOperator(value);
-    const valueIsOperator = isOperator(val);
+    const lastValue = lastItem(calculations);
+
+    const lastValueIsOperator = isOperator(lastValue);
+    const valueIsOperator = isOperator(value);
+    const newValueIsOperator = isOperator(val);
+
+    const addToCalculation = (val) => {
+      if (val[val.length - 1] === ".") {
+        val += "0";
+      }
+      newCalculations.push(val);
+    };
 
     if (enter) {
-      if (valueIsOperator) newValue = value;
+      newCalculations = [];
+      if (newValueIsOperator) addToCalculation(value);
     }
 
     if (!enter) {
-      if (lastValueIsOperator) {
-        if (valueIsOperator) {
-          if (isOperator(lastItem(calculations))) {
-            removeLast = true;
+      if (valueIsOperator) {
+        if (newValueIsOperator) {
+          if (lastValueIsOperator) {
+            newCalculations.pop();
           } else if (val === "-") {
-            newValue = value;
+            addToCalculation(value);
           }
         } else {
-          if (value === "-" && lastItem(calculations) === "-") {
-            console.log("CONTAIN");
-            theValue = "-" + theValue;
+          if (value === "-" && lastValue === "-") {
+            newValue = "-" + newValue;
           } else {
-            newValue = value;
+            addToCalculation(value);
           }
         }
       } else {
-        if (valueIsOperator) {
-          newValue = value;
+        if (newValueIsOperator) {
+          addToCalculation(value);
         } else {
           if (val === "." && value.includes(".")) {
-            theValue = value;
+            newValue = value;
           } else {
-            theValue = removeZeros(value + val);
+            newValue = removeZeros(value + val);
           }
         }
       }
 
-      if (theValue[0] === ".") {
-        theValue = "0" + theValue;
-      }
-
-      if (newValue) {
-        if (newValue[newValue.length - 1] === ".") {
-          newValue += "0";
-        }
+      if (newValue[0] === ".") {
+        newValue = "0" + newValue;
       }
     }
 
     return dispatch({
       type: UPDATE_VALUE,
-      value: theValue,
-      newValue,
-      removeLast,
+      value: newValue,
+      calculations: newCalculations,
     });
   };
 
