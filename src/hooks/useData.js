@@ -21,11 +21,7 @@ const useData = () => {
     [CLEAR]: () => {
       return { value: "0", calculations: [], enter: false };
     },
-    [ENTER]: (state, { lst, result }) => {
-      if (state.enter) return state;
-
-      const calculations = lst.concat(["="]);
-      const value = result;
+    [ENTER]: (state, { calculations, value }) => {
       return { value, calculations, enter: true };
     },
   };
@@ -106,7 +102,7 @@ const useData = () => {
   };
 
   const calculate = () => {
-    if (enter) return dispatch({ type: ENTER });
+    if (enter) return;
 
     const lastChar = lastItem(value);
     const lastCharIsDecimal = lastChar === ".";
@@ -121,12 +117,12 @@ const useData = () => {
     const lastCharIsOperator = isOperator(lastCal);
     if (lastCharIsOperator) lst.pop();
 
-    const result = eval(lst.join("").replace("--", "+"));
+    const finalValue = eval(lst.join("").replace("--", "+"));
 
     return dispatch({
       type: ENTER,
-      result: result,
-      lst,
+      value: finalValue,
+      calculations: lst.concat(["="]),
     });
   };
 
