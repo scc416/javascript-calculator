@@ -1,36 +1,46 @@
 import useData from "./hooks/useData";
 import { charLst } from "./constants";
 
-const numButton = (num) => {
-  return (
-    <div
-      id={num}
-      className="button"
-      onClick={
-        () => console.log("onclick")
-        // this.props.updateValue(
-        //   charLst[num],
-        //   this.props.currentValue,
-        //   this.props.lastItem,
-        //   this.props.ifEnter)
-      }
-    >
-      {charLst[num]}
-    </div>
-  );
-};
-
 const App = () => {
   const { currentValue, saved, enter } = useData();
+
+  const numButton = (num) => {
+    return (
+      <div
+        id={num}
+        className="button"
+        onClick={
+          () => console.log("onclick")
+          // this.props.updateValue(
+          //   charLst[num],
+          //   this.props.currentValue,
+          //   this.props.lastItem,
+          //   this.props.ifEnter)
+        }
+      >
+        {charLst[num]}
+      </div>
+    );
+  };
+
+  const onKeyPress = (key) => {
+    if (operatorsLst.includes(key) || parseInt(key) % 1 == 0) {
+      // this.props.updateValue(
+      //       key,
+      //       this.props.currentValue,
+      //       this.props.lastItem,
+      //       this.props.ifEnter
+      //   )
+    } else if (key == "Enter") {
+      // this.props.enter(
+      //   this.props.saved,
+      //   this.props.currentValue,
+      //   this.props.ifEnter)
+    }
+  };
+
   return (
-    <div
-      onKeyPress={
-        () => console.log("onKeyPress")
-        // (e) => onKeyPress(e.key)
-      }
-      tabIndex="0"
-      className="full"
-    >
+    <div onKeyPress={(e) => onKeyPress(e.key)} tabIndex="0" className="full">
       <div className="grid-container">
         <div className="button screen">
           <div className="equation">
