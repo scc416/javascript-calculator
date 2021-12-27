@@ -1,14 +1,6 @@
 import { useReducer } from "react";
 import { UPDATE_VALUE, CLEAR, ENTER, operatorsLst } from "../constants";
-
-const removeZeros = (str) => {
-  let i = str.length;
-  while (i > 1 && str[0] == 0) {
-    str = str.slice(1);
-    i--;
-  }
-  return str;
-}
+import { removeZeros } from "../helpers";
 
 const useData = () => {
   const reducers = {
