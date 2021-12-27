@@ -5,7 +5,7 @@ import { removeZeros, lastItem } from "../helpers";
 const useData = () => {
   const reducers = {
     [UPDATE_VALUE]: (state, { value, removeLast, newValue }) => {
-      let calculations = [...state.calculations];
+      let calculations = state.calculations.concat([]);
       let { enter } = state;
 
       if (enter) {
