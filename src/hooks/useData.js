@@ -23,12 +23,11 @@ const useData = () => {
       return { value: "0", calculations: [], enter: false };
     },
     [ENTER]: (state, { lst, result }) => {
-      if (!state.enter) {
-        const calculations = [...lst, "="];
-        const value = result;
-        return { value, calculations, enter: true };
-      }
-      return state;
+      if (state.enter) return state;
+
+      const calculations = [...lst, "="];
+      const value = result;
+      return { value, calculations, enter: true };
     },
   };
 
@@ -104,17 +103,16 @@ const useData = () => {
     });
   };
 
-  const enterAction = () => {
+  const calculate = () => {
     if (enter) return dispatch({ type: ENTER });
 
-    let lst = operatorsLst.includes(value)
-      ? [...calculations]
-      : [...calculations, value];
-    if (lst.length > 0) {
-      if (operatorsLst.includes(lst[lst.length - 1])) {
-        lst.pop();
-      }
-    }
+    const lst =
+      value[value.length - 1] === "."
+        ? [...calculations, value, "0"]
+        : operatorsLst.includes(value)
+        ? [...calculations]
+        : [...calculations, value];
+
     return dispatch({
       type: ENTER,
       result: eval(lst.join("")),
@@ -125,15 +123,14 @@ const useData = () => {
   const clear = () => dispatch({ type: CLEAR });
 
   const onKeyPress = ({ key }) => {
-    console.log(key);
     if (operatorsLst.includes(key) || key === "." || parseInt(key) % 1 === 0) {
       updateValue(key);
     } else if (key === "Enter") {
-      enterAction();
+      calculate();
     }
   };
 
-  return { value, calculations, updateValue, enterAction, clear, onKeyPress };
+  return { value, calculations, updateValue, calculate, clear, onKeyPress };
 };
 
 export default useData;

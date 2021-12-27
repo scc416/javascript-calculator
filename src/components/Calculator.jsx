@@ -6,12 +6,12 @@ const Calculator = ({
   calculations,
   clear,
   updateValue,
-  enterAction,
+  calculate,
 }) => {
   return (
     <div className="grid-container">
       <Screen {...{ value, calculations }} />
-      <PadList {...{ enterAction, clear, updateValue }} />
+      <PadList {...{ calculate, clear, updateValue }} />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import { padChar } from "../constants";
 import PadListItem from "./PadListItem";
 
-const PadList = ({ clear, enterAction, updateValue }) => {
+const PadList = ({ clear, calculate, updateValue }) => {
   const padElmList = padChar.map((char) => {
     return <PadListItem {...{ updateValue, char, key: char }} />;
   });
@@ -12,7 +12,7 @@ const PadList = ({ clear, enterAction, updateValue }) => {
         clear
       </div>
       {padElmList}
-      <div id="equals" onClick={enterAction} className="button">
+      <div id="equals" onClick={calculate} className="button">
         =
       </div>
       <PadListItem {...{ updateValue, char: "0" }} />
