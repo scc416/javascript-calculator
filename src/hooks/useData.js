@@ -14,7 +14,6 @@ const useData = () => {
       }
 
       if (removeLast) calculations.pop();
-
       if (newValue) calculations.push(newValue);
 
       return { value, calculations, enter };
@@ -25,7 +24,7 @@ const useData = () => {
     [ENTER]: (state, { lst, result }) => {
       if (state.enter) return state;
 
-      const calculations = [...lst, "="];
+      const calculations = lst.concat["="];
       const value = result;
       return { value, calculations, enter: true };
     },
@@ -47,10 +46,10 @@ const useData = () => {
     let theValue = val;
     let newValue = null;
     let removeLast = false;
-    const b1 = operatorsLst.includes(value);
-    const b2 = operatorsLst.includes(val);
+    const lastValueIsOperator = operatorsLst.includes(value);
+    const valueIsOperator = operatorsLst.includes(val);
     if (enter) {
-      if (b2) {
+      if (valueIsOperator) {
         newValue = value;
       }
       return dispatch({
@@ -60,8 +59,8 @@ const useData = () => {
         removeLast,
       });
     }
-    if (b1) {
-      if (b2) {
+    if (lastValueIsOperator) {
+      if (valueIsOperator) {
         if (operatorsLst.includes(lastItem(calculations))) {
           removeLast = true;
         } else if (val === "-") {
@@ -76,7 +75,7 @@ const useData = () => {
         }
       }
     } else {
-      if (b2) {
+      if (valueIsOperator) {
         newValue = value;
       } else {
         if (val === "." && value.includes(".")) {
@@ -108,10 +107,10 @@ const useData = () => {
 
     const lst =
       value[value.length - 1] === "."
-        ? [...calculations, value, "0"]
+        ? calculations.concat([value, "0"])
         : operatorsLst.includes(value)
-        ? [...calculations]
-        : [...calculations, value];
+        ? calculations.concat([])
+        : calculations.concat([value]);
 
     return dispatch({
       type: ENTER,
@@ -124,10 +123,9 @@ const useData = () => {
 
   const onKeyPress = ({ key }) => {
     if (operatorsLst.includes(key) || key === "." || parseInt(key) % 1 === 0) {
-      updateValue(key);
-    } else if (key === "Enter") {
-      calculate();
+      return updateValue(key);
     }
+    if (key === "Enter") return calculate();
   };
 
   return { value, calculations, updateValue, calculate, clear, onKeyPress };
