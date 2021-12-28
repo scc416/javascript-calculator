@@ -40,6 +40,6 @@ https://drum-pod.netlify.app/ -->
 - [Font Awesome](https://fontawesome.com/): for icons
 
 ## Credit
-<!-- 
-- The design is cloned from [CSA Images](https://www.csaimages.com/preview.asp?image=837422&itemw=4&itemf=0001&itemstep=1&itemx=2).-->
+
+- The design is cloned from [Apple's Magic Keyboard](https://www.apple.com/ca/shop/product/MQ052LL/A/magic-keyboard-with-numeric-keypad-us-english).
 - [Favicons](https://www.flaticon.com/free-icon/calculator_891175) made by [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) from [www.flaticon.com](https://www.flaticon.com/).
