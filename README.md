@@ -41,5 +41,5 @@ https://drum-pod.netlify.app/ -->
 
 ## Credit
 <!-- 
-- The design is cloned from [CSA Images](https://www.csaimages.com/preview.asp?image=837422&itemw=4&itemf=0001&itemstep=1&itemx=2).
-- [Favicons](https://www.flaticon.com/free-icon/ipod_2213) made by [Freepik](https://www.freepik.com) from [www.flaticon.com](https://www.flaticon.com/). Modified by myself. -->
+- The design is cloned from [CSA Images](https://www.csaimages.com/preview.asp?image=837422&itemw=4&itemf=0001&itemstep=1&itemx=2).-->
+- [Favicons](https://www.flaticon.com/free-icon/calculator_891175) made by [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) from [www.flaticon.com](https://www.flaticon.com/).
