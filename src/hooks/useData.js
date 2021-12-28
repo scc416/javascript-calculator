@@ -1,3 +1,5 @@
+/* eslint no-eval: 0 */
+
 import { useReducer } from "react";
 import { UPDATE_VALUE, CLEAR, ENTER } from "../constants";
 import { removeZeros, lastItem, isOperator } from "../helpers";
