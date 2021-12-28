@@ -1,8 +1,7 @@
 # Drum Machine
 
-<!--
-A react drum machine with 9 clickable drum pad elements, which can also be trigger by key press. The drum machine also has a display, power button and volume control.
-This is one of my project for [Front End Development Libraries Projects](https://www.freecodecamp.org/learn/front-end-development-libraries/) on [freeCodeCamp](https://www.freecodecamp.org/): [Build a Drum Machine](https://www.freecodecamp.org/learn/front-end-development-libraries/front-end-development-libraries-projects/build-a-drum-machine). -->
+A react calculator with clickable buttons, which can also be trigger by key press.  
+This is one of my project for [Front End Development Libraries Projects](https://www.freecodecamp.org/learn/front-end-development-libraries/) on [freeCodeCamp](https://www.freecodecamp.org/): [Build a JavaScript Calculator](https://www.freecodecamp.org/learn/front-end-development-libraries/front-end-development-libraries-projects/build-a-javascript-calculator).
 
 ## Table of Content
 
@@ -37,8 +36,8 @@ https://calculator-js-react.netlify.app/
 
 ## Dependencies
 
-- [React](https://reactjs.org/): library for building the UI
-- [Font Awesome](https://fontawesome.com/): for icons
+- [React](https://reactjs.org/): library for building the UI.
+- [Font Awesome](https://fontawesome.com/): for icons.
 
 ## Credit
 
