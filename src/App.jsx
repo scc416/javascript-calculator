@@ -7,7 +7,7 @@ const App = () => {
   const { onKeyPress } = props;
 
   return (
-    <div onKeyPress={onKeyPress} tabIndex="0" className="full">
+    <div onKeyPress={onKeyPress} tabIndex="0">
       <Calculator {...props} />
       <Footer />
     </div>

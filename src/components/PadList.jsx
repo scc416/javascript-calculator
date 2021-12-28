@@ -8,11 +8,11 @@ const PadList = ({ clear, calculate, updateValue }) => {
 
   return (
     <>
-      <div className="clear button" onClick={clear}>
+      <div className="clear" onClick={clear}>
         clear
       </div>
       {padElmList}
-      <div onClick={calculate} className="equal button">
+      <div onClick={calculate} className="equal">
         =
       </div>
       <PadListItem {...{ updateValue, char: "0" }} />

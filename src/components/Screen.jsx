@@ -1,6 +1,6 @@
 const Screen = ({value, calculations}) => {
   return (
-    <div className="button screen">
+    <div className="screen">
       <div className="equation">
         {calculations}
         {value}
