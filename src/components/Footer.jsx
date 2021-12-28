@@ -1,11 +1,11 @@
 const Footer = () => {
   return (
     <div className="footer">
-      Design Inspired by{" "}
+      Design Inspired by&nbsp;
       <a
         target="_blank"
         rel="noreferrer"
-        href="https://www.apple.com/shop/product/MQ052LL/A/magic-keyboard-with-numeric-keypad-us-english-silver"
+        href="https://www.apple.com/ca/shop/product/MQ052LL/A/magic-keyboard-with-numeric-keypad-us-english"
       >
         Magic Keyboard
       </a>
