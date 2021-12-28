@@ -1,10 +1,12 @@
+import { parseChar } from "../helpers";
+
 const PadListItem = ({char, updateValue}) => {
   return (
     <div
       id={`pad-${char}`}
       onClick={() => updateValue(char)}
     >
-      {char}
+      {parseChar(char)}
     </div>
   );
 };

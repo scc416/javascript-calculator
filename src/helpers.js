@@ -16,3 +16,7 @@ export const lastItem = (lst) => {
 };
 
 export const isOperator = (char) => operatorsLst.includes(char);
+
+export const parseChar = (char) => char === "*" ? "x" : char;
+
+export const parseCalculations = (calculations) => calculations.map(parseChar);
