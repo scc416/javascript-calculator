@@ -12,9 +12,9 @@ This is one of my project for [Front End Development Libraries Projects](https:/
 - [Credit](#credit)
 
 ## Live demo
-<!-- 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). It is deployed to [Netlify](https://www.netlify.com/):  
-https://drum-pod.netlify.app/ -->
+https://calculator-js-react.netlify.app/
 
 ## Final Product
 
