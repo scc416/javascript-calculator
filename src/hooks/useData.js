@@ -64,7 +64,8 @@ const useData = () => {
             addToCalculation(value);
           }
         }
-      } else {
+      }
+      if (!valueIsOperator) {
         if (newValueIsOperator) {
           addToCalculation(value);
         } else {
@@ -75,10 +76,10 @@ const useData = () => {
           }
         }
       }
+    }
 
-      if (newValue[0] === ".") {
-        newValue = "0" + newValue;
-      }
+    if (newValue[0] === ".") {
+      newValue = "0" + newValue;
     }
 
     return dispatch({
