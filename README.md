@@ -1,4 +1,4 @@
-# Drum Machine
+# Javascript Calculator
 
 A react calculator with clickable buttons, which can also be triggered by key press.  
 This is one of my project for [Front End Development Libraries Projects](https://www.freecodecamp.org/learn/front-end-development-libraries/) on [freeCodeCamp](https://www.freecodecamp.org/): [Build a JavaScript Calculator](https://www.freecodecamp.org/learn/front-end-development-libraries/front-end-development-libraries-projects/build-a-javascript-calculator).
