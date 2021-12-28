@@ -1,13 +1,14 @@
-import { parseCalculations } from "../helpers";
+import { parseCalculations, parseChar } from "../helpers";
 
 const Screen = ({ value, calculations }) => {
+  const displayChar = parseChar(value);
   return (
     <div className="screen">
       <div>
         {parseCalculations(calculations)}
-        {value}
+        {displayChar}
       </div>
-      <div>{value}</div>
+      <div>{displayChar}</div>
     </div>
   );
 };
