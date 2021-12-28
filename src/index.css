@@ -68,6 +68,16 @@ div.grid-container div.screen {
   word-break: break-all;
 }
 
+.screen > div:first-child {
+  width: 100%;
+  font-size: 20px;
+}
+
+.screen > div:nth-child(2) {
+  width: 100%;
+  font-size: 32px;
+}
+
 .grid-container > div {
   width: 100%;
   height: 100%;
@@ -77,16 +87,6 @@ div.grid-container div.screen {
   justify-content: center;
   align-items: center;
   color: #767676;
-}
-
-.equation {
-  width: 100%;
-  font-size: 20px;
-}
-
-.display {
-  width: 100%;
-  font-size: 32px;
 }
 
 .footer {

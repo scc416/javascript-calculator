@@ -1,11 +1,11 @@
-const Screen = ({value, calculations}) => {
+const Screen = ({ value, calculations }) => {
   return (
     <div className="screen">
-      <div className="equation">
+      <div>
         {calculations}
         {value}
       </div>
-      <div className="display">{value}</div>
+      <div>{value}</div>
     </div>
   );
 };
