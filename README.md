@@ -1,6 +1,7 @@
 # Drum Machine
-<!-- 
-A react drum machine with 9 clickable drum pad elements, which can also be trigger by key press. The drum machine also has a display, power button and volume control.  
+
+<!--
+A react drum machine with 9 clickable drum pad elements, which can also be trigger by key press. The drum machine also has a display, power button and volume control.
 This is one of my project for [Front End Development Libraries Projects](https://www.freecodecamp.org/learn/front-end-development-libraries/) on [freeCodeCamp](https://www.freecodecamp.org/): [Build a Drum Machine](https://www.freecodecamp.org/learn/front-end-development-libraries/front-end-development-libraries-projects/build-a-drum-machine). -->
 
 ## Table of Content
@@ -29,10 +30,10 @@ https://calculator-js-react.netlify.app/
 ## Getting Started
 
 1. Clone or download this repository onto your local device.
-2. `cd` to the folder where this project is cloned
-3. Install all dependencies with `npm install` command
-4. Run the app in the development mode with `npm start` command
-5. Open the broswer and visit: [http://localhost:8080/](http://localhost:8080/)
+2. `cd` to the folder where this project is cloned.
+3. Install all dependencies with `npm install` command.
+4. Run the app in the development mode with `npm start` command.
+5. Open the broswer and visit: [http://localhost:3000/](http://localhost:3000/).
 
 ## Dependencies
 
