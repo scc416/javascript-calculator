@@ -35,12 +35,12 @@ a {
   align-items: center;
   grid-template-rows: 1fr repeat(5, 55px);
   grid-gap: 10px;
-  background-color: #C8C8C8;
+  background-color: #c8c8c8;
   padding: 15px;
   border-radius: 20px;
 }
 
-#clear {
+.clear {
   grid-area: 2/1/3/3;
 }
 
@@ -48,7 +48,7 @@ a {
   grid-area: 6/1/7/3;
 }
 
-#equals {
+.equal {
   height: 100%;
   grid-area: 5/4/7/5;
 }
@@ -57,7 +57,7 @@ a {
   width: 100%;
   height: 100%;
   border-radius: 5px;
-  background-color: #FFF;
+  background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -84,7 +84,7 @@ a {
   font-size: 20px;
 }
 
-#display {
+.display {
   width: 100%;
   font-size: 32px;
 }

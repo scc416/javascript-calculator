@@ -5,7 +5,7 @@ const Screen = ({value, calculations}) => {
         {calculations}
         {value}
       </div>
-      <div id="display">{value}</div>
+      <div className="display">{value}</div>
     </div>
   );
 };
