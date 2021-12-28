@@ -1,8 +1,10 @@
+import { parseCalculations } from "../helpers";
+
 const Screen = ({ value, calculations }) => {
   return (
     <div className="screen">
       <div>
-        {calculations}
+        {parseCalculations(calculations)}
         {value}
       </div>
       <div>{value}</div>
